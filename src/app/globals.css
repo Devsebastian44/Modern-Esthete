@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  /* Brand Colors */
+  --brand-blue: #000000;
+  /* Changed to Black as requested */
+  --brand-dark: #020617;
+  /* Slate 950 */
+  --brand-gray: #f8fafc;
+  /* Slate 50 */
+
+  /* Accent for dark mode or specific elements */
+  --brand-accent: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-gray: var(--brand-gray);
+  --color-primary: #000000;
+  --color-background-light: #f6f7f8;
+  --color-background-dark: #0a0a0a;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui;
+  --font-display: var(--font-manrope);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Disabled dark mode to match the specific light design provided */
+  /* :root {
+    --background: #020617;
+    --foreground: #f8fafc;
+  } */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
