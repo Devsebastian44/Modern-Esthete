@@ -19,23 +19,26 @@ export default function CollectionsPage() {
                 {/* Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16">
                     {/* Featured Series */}
-                    <div className="md:col-span-12 group cursor-pointer relative overflow-hidden aspect-[21/9] rounded-none">
+                    <div className="md:col-span-12 group cursor-pointer relative overflow-hidden aspect-[16/10] md:aspect-[21/9] rounded-none">
                         <div
                             className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
                             style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRD5rr69Tuok5LV2Ud8dB5obKiGRIlDTZlGK6xQbaZdIMnFITvJdNzwnLq2YCavmtc19PC1SERolwaJP-jsefPx3WVEJESVA5E6tT4mpVGxwzeVjpFB2hUdpIKfBCL-bzycvKVLj1uNFYy35LYPujopqavtfqZ5pHdaAscQ7DPK5iGI489mrSYQZjijocU-a-QKp1X7G89AZIIORakrxeAyxYHzVt2EjE9cWL4mp9s6PQf5tFz4SazrVX0MujIlDC1xhe8UtWBej0w")' }}
                         >
                             <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/0 transition-colors duration-700"></div>
                         </div>
-                        <div className="absolute inset-0 flex flex-col justify-end p-10 lg:p-20 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent">
-                            <div className="flex flex-col gap-6 items-start text-white">
+                        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-10 lg:p-20 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent">
+                            <div className="flex flex-col gap-4 md:gap-6 items-start text-white">
                                 <div>
                                     <span className="text-white/80 text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">Featured Series</span>
-                                    <h2 className="text-4xl lg:text-6xl font-bold tracking-tight">The Summer Essentials</h2>
+                                    <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight leading-tight">The Summer Essentials</h2>
                                 </div>
                                 <p className="text-white/90 text-base lg:text-lg max-w-lg font-light leading-relaxed">Artisanal textures and fluid silhouettes designed for the contemporary explorer.</p>
-                                <div className="inline-flex items-center gap-4 group/btn mt-2">
-                                    <span className="uppercase tracking-widest text-[11px] font-bold border-b border-white pb-1">View Collection</span>
-                                    <span className="material-symbols-outlined transition-transform group-hover/btn:translate-x-2 text-[18px]">east</span>
+                                <div className="inline-flex items-center gap-3 group/btn mt-4 md:mt-6">
+                                    <span className="relative uppercase tracking-[0.25em] text-[10px] font-bold leading-none">
+                                        View Collection
+                                        <span className="absolute -bottom-2 left-0 w-full h-[1.5px] bg-white"></span>
+                                    </span>
+                                    <span className="material-symbols-outlined transition-transform group-hover/btn:translate-x-2 text-[22px]">east</span>
                                 </div>
                             </div>
                         </div>
@@ -103,14 +106,14 @@ export default function CollectionsPage() {
                     </div>
 
                     {/* New Arrivals CTA */}
-                    <div className="md:col-span-8 group cursor-pointer relative overflow-hidden aspect-[16/9] rounded-none">
+                    <div className="md:col-span-8 group cursor-pointer relative overflow-hidden aspect-[4/5] md:aspect-[16/9] rounded-none">
                         <div
                             className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
                             style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1RgebPU6CNVzHlQGBWoBgth5NVEvcIGoVTm0EZISZlnX7cfm5YZhwG8zxY9V-Mk7UmMQ60qnS3K17nB_RE74PBR2m0os5mY2o_P9DMQlK1EiOMq51k11liNL9d_CSYpZ0P2PAVU1aVJxL2f5GTg_fF0kr9Vu-ULabNizcVnwzdO4rYmeM0YOTZE0DDFQP2Pk6Sy-Q_K4qDcoGdygyfbxwMcuOYedJL6kCCE_93mrxbEI7mlZjicO-1rnl1i4N9ih7Rzm4_GTCU37Y")' }}
                         ></div>
-                        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 via-transparent to-transparent flex flex-col justify-center p-16 text-white">
+                        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 via-transparent to-transparent flex flex-col justify-center p-8 md:p-16 text-white">
                             <span className="text-white/80 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">Latest Release</span>
-                            <h4 className="text-4xl lg:text-5xl font-bold tracking-tight mb-6">New Arrivals</h4>
+                            <h4 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">New Arrivals</h4>
                             <Link href="/new-arrivals" className="w-fit border border-white text-white px-10 py-4 font-bold text-[10px] uppercase tracking-widest hover:bg-white hover:text-slate-900 transition-all">
                                 Shop Latest
                             </Link>
