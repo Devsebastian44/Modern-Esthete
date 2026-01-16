@@ -1,69 +1,68 @@
-# Modern Esthete / E-commerce
+# Modern Esthete / DevStudio E-commerce
 
 <p align="center">
   <img src="Logo.png">
 </p>
 
+A modern, high-performance e-commerce application built with Next.js 15, TypeScript, and Tailwind CSS. The design features a minimalist and premium aesthetic with advanced layouts for Shop, Cart, and Contact pages.
 
-Un sitio web de comercio electrónico moderno y de alto rendimiento construido con Next.js 15, TypeScript y Tailwind CSS. El diseño presenta una estética minimalista y premium con diseños avanzados para las páginas de Tienda (Shop), Carrito (Cart) y Contacto.
-
-## Stack Tecnológico
+## Tech Stack
 
 - **Framework**: Next.js 15 (App Router)
-- **Lenguaje**: TypeScript
-- **Estilos**: Tailwind CSS
-- **Contexto**: React Context API (Cart State)
-- **Iconos**: Material Symbols Outlined / Lucide React
-- **Fuentes**: Manrope
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Context**: React Context API (Cart State)
+- **Icons**: Material Symbols Outlined / Lucide React
+- **Fonts**: Manrope
 
-## Estructura del Proyecto
+## Project Structure
 
 ```bash
 Modern Esthete/
 ├── src/
-│   ├── app/                # Rutas y Páginas
-│   │   ├── cart/           # Carrito
-│   │   ├── collections/    # Colecciones
-│   │   ├── contact/        # Contacto
-│   │   ├── new-arrivals/   # Novedades
-│   │   ├── shop/           # Tienda y Producto
-│   │   ├── layout.tsx      # Estructura Global
+│   ├── app/                # Routes & Pages
+│   │   ├── cart/           # Shopping Cart
+│   │   ├── collections/    # Editorial Collections
+│   │   ├── contact/        # Contact & Branding
+│   │   ├── new-arrivals/   # Latest Drops
+│   │   ├── shop/           # Shop & Product Details
+│   │   ├── layout.tsx      # Global Structure
 │   │   └── page.tsx        # Home Page
-│   ├── components/         # Bloques de la Web
-│   │   ├── Navbar.tsx      # Navegación
-│   │   ├── Hero.tsx        # Portada
-│   │   ├── ProductCard.tsx # Tarjetas
-│   │   └── Footer.tsx      # Pie de página
-│   ├── context/            # Lógica (Carrito)
-│   └── data/               # Datos de Productos
-└── src/globals.css         # Estilos y Colores
+│   ├── components/         # UI Blocks
+│   │   ├── Navbar.tsx      # Main Navigation
+│   │   ├── Hero.tsx        # High-Impact Hero Section
+│   │   ├── ProductCard.tsx # Product Cards
+│   │   └── Footer.tsx      # Social & Payment Footer
+│   ├── context/            # Logic (Cart State)
+│   └── data/               # Product Data
+└── src/globals.css         # Global Styles & Tokens
 ```
 
-## Empezando
+## Getting Started
 
-1.  **Clonar el repositorio:**
+1.  **Clone the repository:**
     ```bash
     git clone <repository-url>
     cd modern-esthete
     ```
 
-2.  **Instalar dependencias:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
 
-3.  **Ejecutar el servidor de desarrollo:**
+3.  **Run the development server:**
     ```bash
     npm run dev
     ```
 
-4.  **Abrir la aplicación:**
-    Visita [http://localhost:3000](http://localhost:3000)
+4.  **Open the application:**
+    Visit [http://localhost:3000](http://localhost:3000)
 
-## Características Principales
+## Key Features
 
-- **Carrito Dinámico**: Sistema persistente (LocalStorage) para añadir productos, actualizar cantidades y calcular totales automáticamente.
-- **Navegación Móvil**: Menú hamburguesa completo con acceso a categorías, búsqueda y carrito.
-- **Fidelidad de Diseño**: Estética editorial premium con tipografía Manrope y micro-interacciones (Quick Add, Hover effects).
-- **Páginas Editoriales**: Páginas de "New Arrivals" y "Collections" con layouts de alta fidelidad.
-- **SEO Ready**: Estructura semántica HTML5 y optimización de metatitulos.
+- **Dynamic Cart**: Persistent (LocalStorage) system to add products, update quantities, and calculate totals automatically.
+- **Mobile Navigation**: Full-screen hamburger menu with access to categories, search, and cart.
+- **Design Fidelity**: Premium editorial aesthetic with Manrope typography and micro-interactions (Quick Add, Hover effects).
+- **Editorial Pages**: Dedicated "New Arrivals" and "Collections" pages with high-fidelity layouts.
+- **SEO Ready**: Semantic HTML5 structure and meta-title optimization.
