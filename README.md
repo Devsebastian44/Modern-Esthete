@@ -1,6 +1,11 @@
 # Modern Esthete / E-commerce
 
-Una aplicación de comercio electrónico moderna y de alto rendimiento construida con Next.js 15, TypeScript y Tailwind CSS. El diseño presenta una estética minimalista y premium con diseños avanzados para las páginas de Tienda (Shop), Carrito (Cart) y Contacto.
+<p align="center">
+  <img src="Logo.png">
+</p>
+
+
+Un sitio web de comercio electrónico moderno y de alto rendimiento construido con Next.js 15, TypeScript y Tailwind CSS. El diseño presenta una estética minimalista y premium con diseños avanzados para las páginas de Tienda (Shop), Carrito (Cart) y Contacto.
 
 ## Stack Tecnológico
 
