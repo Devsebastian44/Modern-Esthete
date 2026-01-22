@@ -4,10 +4,12 @@ import Link from "next/link";
 import { Search, ShoppingBag, User, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { cartCount } = useCart();
+    const { data: session } = useSession();
 
     return (
         <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
@@ -56,11 +58,15 @@ export default function Navbar() {
                             )}
                         </Link>
 
-                        <button className="hidden sm:block p-1 hover:text-gray-700 transition-colors text-brand-dark">
-                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <Link
+                            href={session ? "/account" : "/login"}
+                            className="hidden sm:block p-1 hover:text-gray-700 transition-colors text-brand-dark"
+                            title={session ? "My Account" : "Sign In"}
+                        >
+                            <svg className={`w-6 h-6 ${session ? "text-indigo-600" : ""}`} viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C9.51472 2 7.5 4.01472 7.5 6.5C7.5 8.98528 9.51472 11 12 11C14.4853 11 16.5 8.98528 16.5 6.5C16.5 4.01472 14.4853 2 12 2ZM4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20V22H4V20Z" />
                             </svg>
-                        </button>
+                        </Link>
 
                         {/* Mobile Menu Toggle */}
                         <button
@@ -97,9 +103,9 @@ export default function Navbar() {
                     <div className="h-px bg-gray-100 w-full mt-4"></div>
 
                     <div className="flex flex-col gap-5 text-sm font-bold uppercase tracking-widest text-gray-500">
-                        <Link href="#" className="flex items-center gap-3">
-                            <span className="material-symbols-outlined text-[20px]">person</span>
-                            My Account
+                        <Link href={session ? "/account" : "/login"} className="flex items-center gap-3" onClick={() => setIsMenuOpen(false)}>
+                            <span className={`material-symbols-outlined text-[20px] ${session ? "text-indigo-600" : ""}`}>person</span>
+                            {session ? "My Account" : "Sign In / Register"}
                         </Link>
                         <Link href="/cart" className="flex items-center gap-3" onClick={() => setIsMenuOpen(false)}>
                             <span className="material-symbols-outlined text-[20px]">shopping_bag</span>

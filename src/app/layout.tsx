@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import AuthProvider from "@/context/AuthProvider";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -29,13 +30,15 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} antialiased bg-white text-brand-dark font-sans transition-colors duration-300`}
       >
-        <CartProvider>
-          <Navbar />
-          <main className="pt-16 min-h-screen">
-            {children}
-          </main>
-          <Footer />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <Navbar />
+            <main className="pt-16 min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );
