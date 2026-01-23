@@ -49,10 +49,64 @@ Modern Esthete/
 │   ├── auth.ts              # Auth.js Configuration
 │   └── globals.css          # Design system & Tailwind config
 ├── .env                     # Environment Variables (Secrets)
-├── ARCHITECTURE.md          # Technical Deep-Dive & Mermaid Diagrams
+├── architecture.drawio      # Visual architecture diagram
 ├── security_policies.sql    # Supabase RLS policies
 └── package.json             # Dependencies & Scripts
 ```
+
+## 🏗️ System Architecture
+
+Modern Esthete leverages modern serverless patterns and a robust relational database.
+
+### Architecture Diagram
+
+```mermaid
+graph TD
+    subgraph Client ["Frontend (Client Browser)"]
+        UI[User Interface / React]
+        Cart[Context / Local Storage]
+    end
+
+    subgraph Server ["Next.js Server / Edge"]
+        API[API Route Handlers]
+        Pages[Server Components]
+        Auth[Auth.js / NextAuth]
+        
+        API --> |Reads/Writes| Prisma[Prisma ORM]
+        Pages --> |Server Data Fetching| Prisma
+        Auth --> |Validate| Prisma
+    end
+
+    subgraph Database ["Data Layer"]
+        Postgres[(PostgreSQL Database)]
+        Prisma --> Postgres
+    end
+
+    subgraph External ["External Services"]
+        Stripe[Stripe Payment Gateway]
+    end
+
+    Client --> |HTTP Requests| API
+    Client --> |Navigation| Pages
+    API --> |Checkout Session| Stripe
+```
+
+## 📊 Data Model (Prisma)
+
+The database schema is designed for scalability and data integrity.
+
+- **User**: Authentication and profile data. Linked to `Orders` and `Addresses`.
+- **Product**: Core catalog item. Includes `slug` for SEO-friendly URLs.
+- **Category**: Hierarchical organization.
+- **Order**: Transactional record linking `User`, `Address`, and `OrderItems`.
+- **Cart**: Persistent shopping cart management.
+
+## 🔐 Security (RLS)
+
+The database is hardened using **Row Level Security (RLS)** in Supabase.
+- Public tables (`Product`, `Category`) are read-only for all.
+- Private tables (`User`, `Order`, `Cart`) are restricted to the owner (`auth.uid()`).
+- Use the provided `security_policies.sql` to apply these rules.
 
 ## 🚀 Getting Started
 
@@ -66,13 +120,7 @@ npm install
 ```
 
 ### 3. Environment Setup
-Create a `.env` file in the root with the following variables:
-```env
-DATABASE_URL="postgresql://..."
-DIRECT_URL="postgresql://..."
-AUTH_SECRET="your-secret-key"
-NEXTAUTH_URL="http://localhost:3000"
-```
+Configure your `.env` with `DATABASE_URL`, `DIRECT_URL`, and `AUTH_SECRET`.
 
 ### 4. Database Sync
 ```bash
@@ -84,12 +132,6 @@ npx prisma db push
 ```bash
 npm run dev
 ```
-
-## 🔐 Security (RLS)
-The database is hardened using **Row Level Security (RLS)**.
-- Public tables (`Product`, `Category`) are read-only for all.
-- Private tables (`User`, `Order`, `Cart`) are restricted to the owner (`auth.uid()`).
-- Use the provided `security_policies.sql` in the Supabase SQL editor to apply these rules.
 
 ## 📄 License
 Private Repository - Modern Esthete Team.
