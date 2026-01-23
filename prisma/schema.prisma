@@ -36,6 +36,7 @@ model User {
   orders    Order[]
   cart      Cart?
   addresses Address[]
+  products  Product[]
 }
 
 model Product {
@@ -51,6 +52,9 @@ model Product {
 
   categoryId  String
   category    Category    @relation(fields: [categoryId], references: [id])
+  
+  userId      String?
+  user        User?       @relation(fields: [userId], references: [id])
   
   orderItems  OrderItem[]
   cartItems   CartItem[]

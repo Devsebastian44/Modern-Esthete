@@ -6,6 +6,8 @@
 
 Modern Esthete is a premium, high-performance e-commerce platform built with **Next.js 15**, **Auth.js v5**, **Prisma**, and **Supabase**. It features a "Modern Minimalist" aesthetic with a core focus on typography, editorial layouts, and a seamless shopping experience.
 
+---
+
 ## 🛠️ Tech Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
@@ -22,36 +24,29 @@ Modern Esthete is a premium, high-performance e-commerce platform built with **N
 ```bash
 Modern Esthete/
 ├── prisma/                  # Database schema & migrations
-│   └── schema.prisma        # Prisma Data Model (User, Product, Order, etc.)
-├── public/                  # Static assets (images, fonts, etc.)
+│   ├── schema.prisma        # Prisma Data Model
+│   └── seed.ts              # Database Seeder (Products/Categories)
+├── public/                  # Static assets & Logos
 ├── src/
 │   ├── app/                 # Next.js App Router (Pages & API)
-│   │   ├── (auth)/          # Authentication Routes
-│   │   │   ├── login/       # Redesigned Login Page
-│   │   │   └── register/    # Redesigned Register Page
-│   │   ├── account/         # Protected User Profile Page
-│   │   ├── api/             # Backend API Endpoints
-│   │   │   ├── auth/        # Auth.js Handlers
-│   │   │   ├── products/    # Product Management
-│   │   │   └── cart/        # Cart Persistence
-│   │   ├── cart/            # Checkout & Cart UI
-│   │   ├── shop/            # Catalog and Product Details
-│   │   ├── layout.tsx       # Root layout with Navbar/Footer
-│   │   └── page.tsx         # High-impact Home Page
+│   │   ├── (auth)/          # Auth flows (Login/Register)
+│   │   ├── account/         # User Profile
+│   │   ├── api/             # Backend Endpoints
+│   │   ├── cart/            # Checkout Flow
+│   │   ├── shop/            # Catalog Layer
+│   │   └── layout.tsx       # Root UI Wrapper
 │   ├── components/          # Reusable UI Architecture
-│   │   ├── Navbar.tsx       # Dynamic navigation with Auth state
-│   │   ├── Hero.tsx         # Modern landing hero
-│   │   └── ...              # Other core components
-│   ├── context/             # Global Logic
-│   │   └── CartContext.tsx  # Shopping cart state & local storage
-│   ├── lib/                 # Core utilities
-│   │   └── prisma.ts        # Singleton Prisma client
-│   ├── auth.ts              # Auth.js Configuration
-│   └── globals.css          # Design system & Tailwind config
-├── .env                     # Environment Variables (Secrets)
-├── architecture.drawio      # Visual architecture diagram
-├── security_policies.sql    # Supabase RLS policies
-└── package.json             # Dependencies & Scripts
+│   │   ├── Hero.tsx         # High-impact visuals
+│   │   └── Navbar.tsx       # Dynamic Auth Navigation
+│   ├── context/             # Global State (Cart)
+│   ├── lib/                 # Core utilities (Prisma Client)
+│   ├── auth.ts              # NextAuth v5 Config
+│   └── globals.css          # Design System
+├── .env                     # Secrets (Supabase/Auth)
+├── LICENSE                  # MIT License
+├── architecture.drawio      # Editable source diagram
+├── security_policies.sql    # Database Hardening
+└── package.json             # Core Metadata
 ```
 
 ## 🏗️ System Architecture
@@ -108,6 +103,8 @@ The database is hardened using **Row Level Security (RLS)** in Supabase.
 - Private tables (`User`, `Order`, `Cart`) are restricted to the owner (`auth.uid()`).
 - Use the provided `security_policies.sql` to apply these rules.
 
+---
+
 ## 🚀 Getting Started
 
 ### 1. Requirements
@@ -133,5 +130,8 @@ npx prisma db push
 npm run dev
 ```
 
-## 📄 License
-Private Repository - Modern Esthete Team.
+---
+
+## 📜 Licencia
+
+Este proyecto está bajo la licencia MIT. Puedes usarlo libremente, siempre citando al autor.
