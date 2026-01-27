@@ -21,6 +21,7 @@ async function getUser(email: string): Promise<any> {
 export const { auth, signIn, signOut, handlers } = NextAuth({
     ...authConfig,
     secret: process.env.AUTH_SECRET,
+    trustHost: true, // Required for Vercel
     debug: true, // Enable debugging to see more info in server logs
     providers: [
         Credentials({
