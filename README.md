@@ -1,10 +1,6 @@
-# Modern Esthete
+# 👒 MODERN_ESTHETE - Backend Systems
 
-<p align="center">
-  <img src="Logo.png">
-</p>
-
-Modern Esthete is a premium, high-performance e-commerce platform built with **Next.js 15**, **Auth.js v5**, **Prisma**, and **Supabase**. It features a "Modern Minimalist" aesthetic with a core focus on typography, editorial layouts, and a seamless shopping experience.
+![Header Image](https://raw.githubusercontent.com/Devsebastian44/Modern-Esthete/main/public/readme-header.png)
 
 ---
 
@@ -14,92 +10,84 @@ Modern Esthete is a premium, high-performance e-commerce platform built with **N
 ![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)
-![TypeScript](https://img.shields.io/badge/TypeScript-Logic-3178C6?style=for-the-badge&logo=typescript)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 
-- [**Next.js 15**](https://nextjs.org/): Core framework for both frontend UI and backend API routes.
-- [**Supabase**](https://supabase.com/): Managed PostgreSQL database with real-time capabilities and security.
-- [**Tailwind CSS 4.0**](https://tailwindcss.com/): Modern styling engine for high-end minimalist aesthetics.
-- [**Prisma**](https://www.prisma.io/): Type-safe ORM for database modeling and efficient querying.
-- [**Auth.js v5**](https://authjs.dev/): Flexible authentication for the Next.js ecosystem.
+- **Framework**: `Next.js 15` (App Router, Server Actions, Middleware).
+- **Styling**: `Tailwind CSS 4.0` with modern design patterns.
+- **ORM & DB**: `Prisma` + `Supabase` (PostgreSQL) with RLS security.
+- **Auth**: `Auth.js v5` (NextAuth) for secure session handling.
+- **Validation**: `Zod` for schema-based data integrity.
 
 ---
 
-## 🏗️ Project Architecture
+## 🏗️ Backend Architecture
 
-The platform follows a modern full-stack architecture, utilizing Next.js as the bridge between user experience and data persistence.
+The Modern Esthete backend is designed as a secure, type-safe serverless infrastructure.
 
 ```mermaid
 graph TD
-    subgraph Client ["Client Interface (Frontend)"]
-        UI[React Components / UI]
-        State[Context API / Cart State]
-        Logic[Client-side Validation]
+    %% Global Styles
+    classDef client fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef server fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef security fill:#f3e5f5,stroke:#4a148c,stroke-width:2px;
+    classDef database fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px;
+
+    subgraph Client ["🌐 Client Interface (Frontend)"]
+        UI["💻 React Components"]
+        State["📦 Cart State (Context)"]
+        Logic["🛡️ Client Validation"]
     end
 
-    subgraph Server ["Infrastructure (Backend)"]
-        Routes[App Router / SSR]
-        API[API Endpoints]
-        Auth[Auth.js Middleware]
-        Prisma[Prisma ORM Engine]
-        
-        Routes --> |Fetch| API
-        API --> |Secure| Auth
-        API --> |Query| Prisma
-        Auth --> |Database Sync| Prisma
+    subgraph Server ["⚡ Infrastructure (Backend)"]
+        Routes["🚀 App Router / SSR"]
+        API["📡 API Endpoints"]
+        Auth["🔐 Auth.js Middleware"]
+        Prisma["💎 Prisma ORM Engine"]
     end
 
-    subgraph Data ["Persistence Layer"]
-        Postgres[(PostgreSQL Database)]
-        Supabase[Supabase Logic / RLS]
-        Prisma --> Postgres
-        Supabase --> Postgres
+    subgraph Data ["💾 Persistence Layer"]
+        Postgres[(🗄️ PostgreSQL Database)]
+        Supabase["🔥 Supabase Logic / RLS"]
     end
 
-    UI --> |User Interaction| State
-    State --> |Hydrate| Logic
-    Logic --> |Secure API Requests| API
-    UI --> |Server Components| Routes
+    %% Connections
+    UI --> State
+    State --> Logic
+    Logic --> API
+    UI --> Routes
+    Routes --> API
+    API --> Auth
+    API --> Prisma
+    Auth --> Prisma
+    Prisma --> Postgres
+    Supabase --> Postgres
+
+    %% Assign Classes
+    class UI,State,Logic client;
+    class Routes,API server;
+    class Auth security;
+    class Prisma,Postgres,Supabase database;
 ```
 
 ---
 
-## 📊 Data Model (Prisma Schema)
+## � Security Model & DB
 
-The architecture prioritizes relational integrity through a structured schema:
-
-- **User**: Central identity node.
-- **Product**: Catalog management with SEO-optimized slugs.
-- **Order/OrderItem**: Transactional records with relational mapping.
-- **Cart**: Session-persistent state management.
-- **Cascading Logic**: Configured at the DB level to ensure data hygiene upon user deletion.
+- **Row Level Security (RLS)**: Direct data protection at the database level.
+- **Zod Validation**: Strict validation for all incoming requests.
+- **JWT Protection**: Secure, encrypted session tokens.
 
 ---
 
-## 🔐 Security & Hardening
+## ⚙️ Environment Configuration
 
-- **RLS (Row Level Security)**: Supabase policies ensure that users can only access their own transactional data (`auth.uid()`).
-- **Middleware Validation**: Next.js middleware intercepts requests to verify identity via Auth.js before reaching data-sensitive routes.
-- **Encryption**: sensitive data is handled using `bcryptjs` for secure hashing.
-
----
-
-## 🚀 Deployment & Initialization
-
-### 1. Database Sync
-```bash
-npx prisma generate
-npx prisma db push
-```
-
-### 2. Environment Variables
-Required keys: `DATABASE_URL`, `DIRECT_URL`, `AUTH_SECRET`, `SUPABASE_SERVICE_ROLE_KEY`.
-
-## 🤝 Contributing
-
-Developed with ❤️ for the Tech Community.
+| Variable | Provider | Purpose |
+| :--- | :--- | :--- |
+| `DATABASE_URL` | PostgreSQL | Main database connection string |
+| `DIRECT_URL` | PostgreSQL | Direct connection string for migrations |
+| `AUTH_SECRET` | Auth.js | Key for sesión encryption |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase Admin | Access for user deletion |
 
 ---
 
-## 📜 Licencia
-
-Este proyecto está bajo la licencia MIT. Puedes usarlo libremente, siempre citando al autor.
+&copy; 2024 MODERN_ESTHETE - Technical Backend Overview.
