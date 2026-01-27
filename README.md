@@ -1,10 +1,10 @@
-# Modern Esthete - Backend Architecture
+# Modern Esthete
 
 <p align="center">
   <img src="Logo.png">
 </p>
 
-Technical documentation overviewing the backend infrastructure, data modeling, and security protocols of the Modern Esthete platform.
+Modern Esthete is a premium, high-performance e-commerce platform built with **Next.js 15**, **Auth.js v5**, **Prisma**, and **Supabase**. It features a "Modern Minimalist" aesthetic with a core focus on typography, editorial layouts, and a seamless shopping experience.
 
 ---
 
@@ -16,68 +16,49 @@ Technical documentation overviewing the backend infrastructure, data modeling, a
 ![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Logic-3178C6?style=for-the-badge&logo=typescript)
 
-- [**Next.js 15**](https://nextjs.org/): The React framework for the web. Specialized in Server Components, streaming, and high-performance rendering.
-- [**Supabase**](https://supabase.com/): Backend-as-a-Service providing PostgreSQL database, Secure Auth, and real-time capabilities.
-- [**Tailwind CSS 4.0**](https://tailwindcss.com/): A utility-first CSS framework for rapid UI development with a custom premium design system.
-- [**Prisma**](https://www.prisma.io/): Next-generation ORM for Node.js and TypeScript, making database access easy and type-safe.
-- [**TypeScript**](https://www.typescriptlang.org/): Static type checking for robust, scalable, and maintainable code.
-- [**Auth.js v5**](https://authjs.dev/): Secure authentication and session management designed specifically for the Next.js ecosystem.
+- [**Next.js 15**](https://nextjs.org/): Core framework for both frontend UI and backend API routes.
+- [**Supabase**](https://supabase.com/): Managed PostgreSQL database with real-time capabilities and security.
+- [**Tailwind CSS 4.0**](https://tailwindcss.com/): Modern styling engine for high-end minimalist aesthetics.
+- [**Prisma**](https://www.prisma.io/): Type-safe ORM for database modeling and efficient querying.
+- [**Auth.js v5**](https://authjs.dev/): Flexible authentication for the Next.js ecosystem.
 
 ---
 
-## 🏗️ Architecture & Logic Flow
+## 🏗️ Project Architecture
 
-The Modern Esthete backend uses a serverless model focused on data integrity.
+The platform follows a modern full-stack architecture, utilizing Next.js as the bridge between user experience and data persistence.
 
-### Structural Overview
 ```mermaid
 graph TD
-    subgraph Client ["Client Layer"]
-        UI[Frontend / React]
-        AuthC[Auth.js Client]
+    subgraph Client ["Client Interface (Frontend)"]
+        UI[React Components / UI]
+        State[Context API / Cart State]
+        Logic[Client-side Validation]
     end
 
-    subgraph Server ["Backend Layer (Next.js)"]
-        API[API Route Handlers]
-        AuthS[Auth.js Server/Middleware]
-        Prisma[Prisma Client]
+    subgraph Server ["Infrastructure (Backend)"]
+        Routes[App Router / SSR]
+        API[API Endpoints]
+        Auth[Auth.js Middleware]
+        Prisma[Prisma ORM Engine]
         
-        API --> |Context| AuthS
-        API --> |Data| Prisma
-        AuthS --> |Persist| Prisma
+        Routes --> |Fetch| API
+        API --> |Secure| Auth
+        API --> |Query| Prisma
+        Auth --> |Database Sync| Prisma
     end
 
     subgraph Data ["Persistence Layer"]
-        Postgres[(PostgreSQL)]
-        Supabase[Supabase Admin/RLS]
+        Postgres[(PostgreSQL Database)]
+        Supabase[Supabase Logic / RLS]
         Prisma --> Postgres
         Supabase --> Postgres
     end
 
-    Client --> |Secure Fetch| API
-```
-
-### Process Example: Account Deletion
-```mermaid
-sequenceDiagram
-    participant User as Client / Browser
-    participant API as Next.js API Route
-    participant Auth as Auth.js (Middleware)
-    participant DB as Prisma / PostgreSQL
-    participant SB as Supabase Auth (Admin)
-
-    User->>API: DELETE /api/auth/delete-account
-    API->>Auth: Validate Session (JWT)
-    alt Unauthorized
-        Auth-->>User: 401 Unauthorized
-    else Authorized
-        API->>DB: prisma.user.delete({ where: { id } })
-        Note over DB: Cascading Deletes (Orders, Cart, etc.)
-        DB-->>API: Success / Error
-        API->>SB: supabaseAdmin.auth.admin.deleteUser(id)
-        SB-->>API: Success / Warn
-        API-->>User: 200 OK (Clean Slate)
-    end
+    UI --> |User Interaction| State
+    State --> |Hydrate| Logic
+    Logic --> |Secure API Requests| API
+    UI --> |Server Components| Routes
 ```
 
 ---
@@ -113,9 +94,9 @@ npx prisma db push
 ### 2. Environment Variables
 Required keys: `DATABASE_URL`, `DIRECT_URL`, `AUTH_SECRET`, `SUPABASE_SERVICE_ROLE_KEY`.
 
----
+## 🤝 Contributing
 
-&copy; 2024 MODERN_ESTHETE - Technical Backend Overview.
+Developed with ❤️ for the Tech Community.
 
 ---
 
