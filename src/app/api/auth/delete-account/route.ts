@@ -20,18 +20,19 @@ export async function DELETE() {
                 where: { id: userId },
             });
             console.log(`User ${userId} deleted from Prisma.`);
-        } catch (prismaError: any) {
+        } catch (prismaError: unknown) {
+            const error = prismaError as { code?: string; message?: string; meta?: unknown };
             console.error('Prisma deletion detail error:', {
-                code: prismaError.code,
-                message: prismaError.message,
-                meta: prismaError.meta
+                code: error.code,
+                message: error.message,
+                meta: error.meta
             });
             // P2025 is "Record to delete does not exist"
-            if (prismaError.code === 'P2025') {
+            if (error.code === 'P2025') {
                 console.warn(`User ${userId} not found in Prisma, maybe already deleted.`);
             } else {
                 return NextResponse.json(
-                    { error: `Database error: ${prismaError.message}` },
+                    { error: `Database error: ${error.message || 'Unknown error'}` },
                     { status: 500 }
                 );
             }
@@ -46,7 +47,7 @@ export async function DELETE() {
                 } else {
                     console.log(`User ${userId} deleted from Supabase Auth.`);
                 }
-            } catch (authError: any) {
+            } catch (authError: unknown) {
                 console.error('Supabase Admin client error:', authError);
             }
         } else {
@@ -54,10 +55,11 @@ export async function DELETE() {
         }
 
         return NextResponse.json({ message: 'Account deleted successfully' });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Global account deletion error:', error);
+        const message = error instanceof Error ? error.message : 'Internal server error';
         return NextResponse.json(
-            { error: error.message || 'Internal server error' },
+            { error: message },
             { status: 500 }
         );
     }

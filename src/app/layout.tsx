@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Curated essentials for the modern professional.",
 };
 
+import { Suspense } from "react";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +34,9 @@ export default function RootLayout({
       >
         <AuthProvider>
           <CartProvider>
-            <Navbar />
+            <Suspense fallback={<div className="h-18" />}>
+              <Navbar />
+            </Suspense>
             <main className="pt-16 min-h-screen">
               {children}
             </main>

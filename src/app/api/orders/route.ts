@@ -14,17 +14,17 @@ export async function POST(request: Request) {
             // This requires fetching product prices to prevent frontend tampering
             // Simulating for now
 
-            let total = 0
+            const total = 0
 
             // 2. Create Order
             const order = await tx.order.create({
                 data: {
                     userId,
                     addressId,
-                    total: 0, // Placeholder, usually calculated
+                    total: total, // Placeholder, usually calculated
                     status: 'PENDING',
                     items: {
-                        create: items.map((item: any) => ({
+                        create: items.map((item: { productId: string; quantity: number; price: number }) => ({
                             productId: item.productId,
                             quantity: item.quantity,
                             price: item.price // Should verify against DB

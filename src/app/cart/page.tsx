@@ -141,9 +141,27 @@ export default function CartPage() {
                                     <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                                 </button>
                                 <div className="flex items-center justify-center gap-4 py-2 opacity-50 grayscale hover:grayscale-0 transition-all duration-300">
-                                    <img alt="Visa" className="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsl3YdO_rTJYFpsZ9tvcWVqOuesVPalklSbpQ2o9egb88HwWkGX56GZABhbApvZ5L5VePKNG2DkRMznMiYYxygjLE63KTJL1-9Cs1Vw9y9BhLBgU6J9trAGcUUaP29PjmJeNypzAm22QNy7wWp3XrTHUaevJBOOWtVmajxj6yFdbZ28L1C7TKuWOVDKvGqxHFkh8OFbZEBh8IiR2VJjCs7qQZBgg9Xulvv9PwQK25P1xSXFxO1ASaFfrZRHMVSWiTvPRu14rcEh7R4" />
-                                    <img alt="Mastercard" className="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCieXkJQyl1ELRkt7sncJxQ_sUYBXQRDHGrLBnq2ZliFZb-VGWyzAoi2piYsH5yJw-5HSdYzq_LSvABLyZRE_fsSTHCQ5VviU0CzR7zB-rcOGv80JNx578ykKXGbOn-EAnaR1dVr37moldkw9ggvb37tJWeRChcua5a1XMhIkF5ZaL9pIJVcWxT868qvrKgs29WmRWX7327BDB2fMl5kc9PSfcifXiAUOHyV1z8MOt1DHYHcYnyW30EnkPba75d-JUXMJl2LQw3KsFy" />
-                                    <img alt="PayPal" className="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0207RaP2Uqy7ycBlvk_tphHB31qh_PRddGG72USrOrj-WMBG4QD8qF-YG-xTyetTRWnmO7rJ3k8dS31kb6X52W0hBXymPNpEAJCSKEHKxQh1qpf9q37iSiaTskd57AXUTH3WfVmcvb6GpGEee3sbbOvLk0vpEz8mtTnjYJYDE2KPqKRo6dbgNTRS4YnnkThhyh9XSV8GnEj9cbvVu-559U38FJG5NcYs42BHDwB7FU9Vv_1E3Y1arxMYecvgBUy7UX7gEfPP_Liya" />
+                                    <Image
+                                        alt="Visa"
+                                        width={40}
+                                        height={16}
+                                        className="h-4 w-auto"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsl3YdO_rTJYFpsZ9tvcWVqOuesVPalklSbpQ2o9egb88HwWkGX56GZABhbApvZ5L5VePKNG2DkRMznMiYYxygjLE63KTJL1-9Cs1Vw9y9BhLBgU6J9trAGcUUaP29PjmJeNypzAm22QNy7wWp3XrTHUaevJBOOWtVmajxj6yFdbZ28L1C7TKuWOVDKvGqxHFkh8OFbZEBh8IiR2VJjCs7qQZBgg9Xulvv9PwQK25P1xSXFxO1ASaFfrZRHMVSWiTvPRu14rcEh7R4"
+                                    />
+                                    <Image
+                                        alt="Mastercard"
+                                        width={40}
+                                        height={24}
+                                        className="h-6 w-auto"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCieXkJQyl1ELRkt7sncJxQ_sUYBXQRDHGrLBnq2ZliFZb-VGWyzAoi2piYsH5yJw-5HSdYzq_LSvABLyZRE_fsSTHCQ5VviU0CzR7zB-rcOGv80JNx578ykKXGbOn-EAnaR1dVr37moldkw9ggvb37tJWeRChcua5a1XMhIkF5ZaL9pIJVcWxT868qvrKgs29WmRWX7327BDB2fMl5kc9PSfcifXiAUOHyV1z8MOt1DHYHcYnyW30EnkPba75d-JUXMJl2LQw3KsFy"
+                                    />
+                                    <Image
+                                        alt="PayPal"
+                                        width={60}
+                                        height={16}
+                                        className="h-4 w-auto"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0207RaP2Uqy7ycBlvk_tphHB31qh_PRddGG72USrOrj-WMBG4QD8qF-YG-xTyetTRWnmO7rJ3k8dS31kb6X52W0hBXymPNpEAJCSKEHKxQh1qpf9q37iSiaTskd57AXUTH3WfVmcvb6GpGEee3sbbOvLk0vpEz8mtTnjYJYDE2KPqKRo6dbgNTRS4YnnkThhyh9XSV8GnEj9cbvVu-559U38FJG5NcYs42BHDwB7FU9Vv_1E3Y1arxMYecvgBUy7UX7gEfPP_Liya"
+                                    />
                                 </div>
                             </div>
                             <p className="mt-6 text-center text-xs text-slate-400 leading-relaxed font-medium">

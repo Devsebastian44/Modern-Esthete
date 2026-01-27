@@ -8,7 +8,9 @@ import SidebarFilters from "@/components/SidebarFilters";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/data/mockData";
 
-export default function ShopPage() {
+import { Suspense } from "react";
+
+function ShopContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const query = searchParams.get("q") || "";
@@ -117,5 +119,13 @@ export default function ShopPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function ShopPage() {
+    return (
+        <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading Shop...</div>}>
+            <ShopContent />
+        </Suspense>
     );
 }

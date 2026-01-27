@@ -3,18 +3,29 @@
 import { useState, useMemo, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Truck, ShieldCheck, Star, ChevronLeft } from "lucide-react";
+import { Heart, Truck, ShieldCheck, Star } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { products } from "@/data/mockData";
+
+interface Product {
+    id: number;
+    name: string;
+    category: string;
+    price: number;
+    image: string;
+    description?: string;
+    sizes?: string[];
+    colors?: string[];
+}
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
     const { addToCart } = useCart();
 
     // Find product from mock data
-    const product = useMemo(() => {
+    const product = useMemo<Product>(() => {
         const found = products.find(p => p.id === parseInt(id));
-        if (found) return found;
+        if (found) return found as Product;
 
         // Default if not found (fallback to a demo product)
         return {
@@ -98,7 +109,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                         </div>
 
                         <p className="text-zinc-500 leading-relaxed mb-10 text-lg">
-                            {(product as any).description || "A masterpiece of precision engineering and timeless design. Featuring a sapphire crystal face, Swiss-made automatic movement, and a premium hand-stitched finish."}
+                            {product.description || "A masterpiece of precision engineering and timeless design. Featuring a sapphire crystal face, Swiss-made automatic movement, and a premium hand-stitched finish."}
                         </p>
 
                         {/* Selectors */}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
@@ -7,11 +8,12 @@ export default function Hero() {
                 <div className="relative overflow-hidden rounded-xl h-[600px] flex items-center bg-zinc-900">
                     {/* Background Image using Next.js Image for maximum quality and optimization */}
                     <div className="absolute inset-0 z-0">
-                        <img
+                        <Image
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuASr8ZZlL7hdZTw1CKmHFg3GfXhWWVIRJZTZJWnSJSVPXcjarxcKGcN1ZKv1_oVuGC1NKBqmOaTViEh33P4zS6Bhskgr8ym600Q6eIjgKydHhq5Mx1ydpBJVN8DpnDkNPIEuwwvkinPmd3mY4Kv6ASP4YkWHrEupmII1u8rBn6nHKq1097PYj16iLK8mzflWzJ0KjMXk0eLk7Vxwsu0rUtI1WyhtgFfCNp34PbM47-aqLlVU5ayxzMLqi0-V8kkr6jXcWSmDGeotCXa=s2048"
                             alt="high-end minimalist fashion model"
-                            className="absolute inset-0 w-full h-full object-cover object-center"
-                            loading="eager"
+                            fill
+                            className="object-cover object-center"
+                            priority
                         />
                         {/* Overlay strictly according to HTML: 0.4 to 0.5 opacity */}
                         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/50" />

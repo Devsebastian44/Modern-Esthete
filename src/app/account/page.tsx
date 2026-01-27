@@ -55,9 +55,10 @@ export default function AccountPage() {
                 setIsDeleting(false);
                 setShowDeleteConfirm(false);
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error('Fetch error:', error);
-            alert(`Something went wrong: ${error.message || 'Unknown error'}`);
+            const message = error instanceof Error ? error.message : 'Unknown error';
+            alert(`Something went wrong: ${message}`);
             setIsDeleting(false);
             setShowDeleteConfirm(false);
         }

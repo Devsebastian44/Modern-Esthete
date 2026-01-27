@@ -5,10 +5,10 @@ import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 // import type { User } from '@/lib/types'; 
-import { User } from '@prisma/client';
+import type { User } from '@prisma/client';
 
 // Helper to get user
-async function getUser(email: string): Promise<any> {
+async function getUser(email: string): Promise<User | null> {
     try {
         const user = await prisma.user.findUnique({ where: { email } });
         return user;
