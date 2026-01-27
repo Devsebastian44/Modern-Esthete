@@ -1,15 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import { Search, ShoppingBag, User, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Search, ShoppingBag, User, Menu, X, ArrowRight } from "lucide-react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useCart } from "@/context/CartContext";
 import { useSession } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { products } from "@/data/mockData";
+import Image from "next/image";
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [showSuggestions, setShowSuggestions] = useState(false);
     const { cartCount } = useCart();
     const { data: session } = useSession();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const searchRef = useRef<HTMLDivElement>(null);
+
+    // Sync input with search params if they change
+    useEffect(() => {
+        const q = searchParams.get("q");
+        if (q) setSearchQuery(q);
+    }, [searchParams]);
+
+    // Click outside handler
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+                setShowSuggestions(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    const suggestions = useMemo(() => {
+        if (searchQuery.length < 2) return [];
+        return products
+            .filter(p =>
+                p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                p.category.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .slice(0, 5); // Limit to 5 suggestions
+    }, [searchQuery]);
+
+    const handleSearch = (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/shop?q=${encodeURIComponent(searchQuery.trim())}`);
+            setIsMenuOpen(false);
+            setShowSuggestions(false);
+        }
+    };
+
+    const navigateToProduct = (id: number) => {
+        router.push(`/shop/${id}`);
+        setShowSuggestions(false);
+        setSearchQuery("");
+    };
 
     return (
         <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
@@ -18,14 +68,13 @@ export default function Navbar() {
                 <div className="flex items-center gap-12">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
-                        {/* Custom Pie Icon matching reference image */}
                         <div className="w-10 h-10 relative flex items-center justify-center">
                             <div className="w-8 h-8 bg-black rounded-full" style={{ clipPath: 'polygon(50% 50%, 50% 100%, 0 100%, 0 0, 100% 0, 100% 50%)' }}></div>
                         </div>
                         <span className="text-xl font-bold tracking-tight text-brand-dark uppercase">MODERN ESTHETE</span>
                     </Link>
 
-                    {/* Desktop Nav - Now next to logo */}
+                    {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-6 text-sm font-semibold tracking-wide text-brand-dark">
                         <Link href="/shop" className="hover:text-gray-600 transition-colors">Shop</Link>
                         <Link href="/new-arrivals" className="hover:text-gray-600 transition-colors">New Arrivals</Link>
@@ -37,13 +86,78 @@ export default function Navbar() {
                 {/* Right Side: Search + Actions */}
                 <div className="flex items-center gap-4 md:gap-6">
                     {/* Search Bar - Desktop */}
-                    <div className="hidden md:flex items-center bg-gray-100/80 rounded-full px-4 py-2 w-64 hover:bg-gray-100 transition-colors cursor-text">
-                        <Search className="w-4 h-4 text-gray-500" />
-                        <input
-                            type="text"
-                            placeholder="Search curated items..."
-                            className="bg-transparent border-none text-xs ml-3 w-full focus:outline-none placeholder:text-gray-500 text-brand-dark font-medium"
-                        />
+                    <div className="relative" ref={searchRef}>
+                        <form
+                            onSubmit={handleSearch}
+                            className="hidden md:flex items-center bg-gray-100/80 rounded-full px-4 py-2 w-64 hover:bg-gray-100 transition-colors cursor-text group focus-within:ring-2 ring-black/5"
+                        >
+                            <button type="submit">
+                                <Search className="w-4 h-4 text-gray-500 group-hover:text-black transition-colors" />
+                            </button>
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onFocus={() => setShowSuggestions(true)}
+                                onChange={(e) => {
+                                    setSearchQuery(e.target.value);
+                                    setShowSuggestions(true);
+                                }}
+                                placeholder="Search curated items..."
+                                className="bg-transparent border-none text-xs ml-3 w-full focus:outline-none placeholder:text-gray-500 text-brand-dark font-medium"
+                            />
+                        </form>
+
+                        {/* Suggestions Dropdown */}
+                        {showSuggestions && searchQuery.length >= 2 && (
+                            <div className="absolute top-full right-0 mt-3 w-[400px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-[100]">
+                                <div className="p-2">
+                                    <div className="px-4 py-3 border-b border-gray-50 mb-1">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">Suggestions</span>
+                                    </div>
+
+                                    {suggestions.length > 0 ? (
+                                        <>
+                                            <div className="space-y-1">
+                                                {suggestions.map((product) => (
+                                                    <button
+                                                        key={product.id}
+                                                        onClick={() => navigateToProduct(product.id)}
+                                                        className="w-full flex items-center gap-4 p-3 hover:bg-zinc-50 rounded-xl transition-all group text-left"
+                                                    >
+                                                        <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-zinc-100 flex-shrink-0">
+                                                            <Image
+                                                                src={product.image}
+                                                                alt={product.name}
+                                                                fill
+                                                                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                                            />
+                                                        </div>
+                                                        <div className="flex-1 min-w-0">
+                                                            <h4 className="text-sm font-bold text-black truncate">{product.name}</h4>
+                                                            <p className="text-[10px] uppercase font-black tracking-widest text-zinc-400">{product.category}</p>
+                                                        </div>
+                                                        <span className="text-xs font-bold text-black opacity-0 group-hover:opacity-100 transition-opacity pr-2">
+                                                            ${(product.price as number).toFixed(2)}
+                                                        </span>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                            <button
+                                                onClick={handleSearch}
+                                                className="w-full mt-2 p-4 bg-zinc-50 hover:bg-black hover:text-white transition-all text-[11px] font-bold tracking-tight flex items-center justify-between group"
+                                            >
+                                                <span>View all results for "{searchQuery}"</span>
+                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <div className="p-8 text-center bg-zinc-50/50">
+                                            <p className="text-sm text-zinc-400 font-medium">No results found for "{searchQuery}"</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex items-center gap-3 md:gap-5">
@@ -83,14 +197,21 @@ export default function Navbar() {
             <div className={`fixed inset-0 top-[73px] bg-white z-[100] transition-transform duration-300 md:hidden h-[calc(100vh-73px)] overflow-y-auto ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex flex-col p-8 gap-8 min-h-full bg-white text-brand-dark">
                     {/* Mobile Search */}
-                    <div className="flex items-center bg-gray-100 rounded-xl px-5 py-4 w-full">
-                        <Search className="w-5 h-5 text-gray-500" />
+                    <form
+                        onSubmit={handleSearch}
+                        className="flex items-center bg-gray-100 rounded-xl px-5 py-4 w-full"
+                    >
+                        <button type="submit">
+                            <Search className="w-5 h-5 text-gray-500" />
+                        </button>
                         <input
                             type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Search products..."
                             className="bg-transparent border-none text-sm ml-4 w-full focus:outline-none placeholder:text-gray-500 text-brand-dark font-semibold"
                         />
-                    </div>
+                    </form>
 
                     {/* Mobile Links */}
                     <div className="flex flex-col gap-6 text-2xl font-black uppercase tracking-tighter text-brand-dark">

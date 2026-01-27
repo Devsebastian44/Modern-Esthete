@@ -1,4 +1,4 @@
-import { Twitter, Instagram, CreditCard, Wallet } from "lucide-react";
+import { Twitter, Instagram } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -61,13 +61,8 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="container-custom pt-8 border-t border-zinc-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-400">
+            <div className="container-custom pt-8 border-t border-zinc-200 text-center text-xs text-zinc-400">
                 <p>&copy; {new Date().getFullYear()} MODERN_ESTHETE. All rights reserved. Crafted by Senior Portfolio.</p>
-                <div className="flex gap-6 grayscale opacity-50">
-                    <Wallet className="w-6 h-6" />
-                    <CreditCard className="w-6 h-6" />
-                    <Wallet className="w-6 h-6" /> {/* Placeholder for account_balance_wallet */}
-                </div>
             </div>
         </footer>
     );

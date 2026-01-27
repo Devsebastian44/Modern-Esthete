@@ -12,6 +12,7 @@ interface ProductCardProps {
     price: number | string;
     originalPrice?: number | string;
     new?: boolean;
+    sizes?: string[];
 }
 
 export default function ProductCard(props: ProductCardProps) {
@@ -28,7 +29,7 @@ export default function ProductCard(props: ProductCardProps) {
                         className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
                     />
                     {/* Quick Add Button - Inside image container */}
-                    <div className="absolute inset-x-4 bottom-4 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
+                    <div className="absolute inset-x-6 bottom-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
                         <button
                             onClick={(e) => {
                                 e.preventDefault();
@@ -41,7 +42,7 @@ export default function ProductCard(props: ProductCardProps) {
                                     category: props.category
                                 });
                             }}
-                            className="w-full bg-white text-[#0a0a0a] py-3 rounded-lg font-bold text-xs shadow-sm hover:bg-zinc-50 transition-colors"
+                            className="w-full bg-white/90 backdrop-blur-md text-[#0a0a0a] py-3.5 rounded-full font-bold text-xs shadow-lg hover:bg-white transition-all duration-300"
                         >
                             Quick Add +
                         </button>
