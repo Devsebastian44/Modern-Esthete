@@ -28,8 +28,8 @@ export default function Footer() {
                 <div>
                     <h4 className="font-bold text-brand-dark mb-6">Shopping</h4>
                     <ul className="space-y-4 text-zinc-500">
-                        <li><Link href="#" className="hover:text-black transition-colors">Men's Collection</Link></li>
-                        <li><Link href="#" className="hover:text-black transition-colors">Women's Collection</Link></li>
+                        <li><Link href="#" className="hover:text-black transition-colors">Men&apos;s Collection</Link></li>
+                        <li><Link href="#" className="hover:text-black transition-colors">Women&apos;s Collection</Link></li>
                         <li><Link href="#" className="hover:text-black transition-colors">Accessories</Link></li>
                         <li><Link href="#" className="hover:text-black transition-colors">New Arrivals</Link></li>
                         <li><Link href="#" className="hover:text-black transition-colors">Gift Cards</Link></li>

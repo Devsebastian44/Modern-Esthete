@@ -9,7 +9,7 @@ export default function FeaturedProducts() {
             <div className="container-custom">
                 <div className="flex items-end justify-between mb-8">
                     <div>
-                        <span className="text-zinc-400 text-[11px] font-bold tracking-[0.25em] uppercase block mb-2">Editor's Choice</span>
+                        <span className="text-zinc-400 text-[11px] font-bold tracking-[0.25em] uppercase block mb-2">Editor&apos;s Choice</span>
                         <h2 className="text-4xl font-extrabold tracking-tight text-[#0a0a0a]">Featured Products</h2>
                     </div>
                     <Link href="/shop" className="text-black font-bold flex items-center gap-1 group mb-1">

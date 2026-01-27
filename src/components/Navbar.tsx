@@ -22,7 +22,10 @@ export default function Navbar() {
     // Sync input with search params if they change
     useEffect(() => {
         const q = searchParams.get("q");
-        if (q) setSearchQuery(q);
+        if (q) {
+            const timer = setTimeout(() => setSearchQuery(q), 0);
+            return () => clearTimeout(timer);
+        }
     }, [searchParams]);
 
     // Click outside handler
@@ -146,13 +149,13 @@ export default function Navbar() {
                                                 onClick={handleSearch}
                                                 className="w-full mt-2 p-4 bg-zinc-50 hover:bg-black hover:text-white transition-all text-[11px] font-bold tracking-tight flex items-center justify-between group"
                                             >
-                                                <span>View all results for "{searchQuery}"</span>
+                                                <span>View all results for &quot;{searchQuery}&quot;</span>
                                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                             </button>
                                         </>
                                     ) : (
                                         <div className="p-8 text-center bg-zinc-50/50">
-                                            <p className="text-sm text-zinc-400 font-medium">No results found for "{searchQuery}"</p>
+                                            <p className="text-sm text-zinc-400 font-medium">No results found for &quot;{searchQuery}&quot;</p>
                                         </div>
                                     )}
                                 </div>

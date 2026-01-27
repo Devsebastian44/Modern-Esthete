@@ -80,7 +80,7 @@ export default function CartPage() {
                                 <div className="py-20 text-center">
                                     <span className="material-symbols-outlined text-6xl text-slate-200 mb-4 block">shopping_bag</span>
                                     <h3 className="text-xl font-bold text-slate-900 mb-2">Your cart is empty</h3>
-                                    <p className="text-slate-500 mb-8">Looks like you haven't added anything to your cart yet.</p>
+                                    <p className="text-slate-500 mb-8">Looks like you haven&apos;t added anything to your cart yet.</p>
                                     <Link href="/shop" className="inline-block bg-black text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest hover:bg-slate-800 transition-colors">
                                         Start Shopping
                                     </Link>

@@ -19,7 +19,7 @@ export default function ContactPage() {
                             Where Code<br />Meets Craft
                         </h1>
                         <p className="text-[17px] text-zinc-500 leading-relaxed font-light mb-6">
-                            We merge the surgical precision of senior engineering with the uncompromising aesthetic of high-end fashion. Every line of code is a stitch; every interface, a tailored silhouette. We don't just build software; we craft digital legacies that transcend the ordinary.
+                            We merge the surgical precision of senior engineering with the uncompromising aesthetic of high-end fashion. Every line of code is a stitch; every interface, a tailored silhouette. We don&apos;t just build software; we craft digital legacies that transcend the ordinary.
                         </p>
                         <div>
                             <Link href="#contact" className="inline-flex items-center gap-4 font-black text-[11px] uppercase tracking-[0.2em] group border-b-2 border-black pb-2 transition-all hover:opacity-70">
@@ -35,9 +35,9 @@ export default function ContactPage() {
             <section className="grid grid-cols-1 lg:grid-cols-12 gap-16" id="contact">
                 <div className="lg:col-span-6 flex flex-col gap-12">
                     <div>
-                        <h2 className="text-4xl lg:text-5xl font-black mb-6 tracking-tighter uppercase italic text-[#0a0a0a]">Let's Interface</h2>
+                        <h2 className="text-4xl lg:text-5xl font-black mb-6 tracking-tighter uppercase italic text-[#0a0a0a]">Let&apos;s Interface</h2>
                         <p className="text-zinc-500 max-w-md font-light text-lg">
-                            Whether it's a new venture or a refined architectural challenge, we're ready to bring a master's touch to your vision.
+                            Whether it&apos;s a new venture or a refined architectural challenge, we&apos;re ready to bring a master&apos;s touch to your vision.
                         </p>
                     </div>
 

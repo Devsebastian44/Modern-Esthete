@@ -13,11 +13,15 @@ function LoginForm() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (searchParams.get('registered')) {
-            setSuccess('Registration successful! Please check your email to confirm your account.');
-        } else if (searchParams.get('confirmed')) {
-            setSuccess('Email confirmed! You can now sign in.');
-        }
+        const checkParams = () => {
+            if (searchParams.get('registered')) {
+                setSuccess('Registration successful! Please check your email to confirm your account.');
+            } else if (searchParams.get('confirmed')) {
+                setSuccess('Email confirmed! You can now sign in.');
+            }
+        };
+        const timer = setTimeout(checkParams, 0);
+        return () => clearTimeout(timer);
     }, [searchParams]);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -121,7 +125,7 @@ function LoginForm() {
                 </form>
 
                 <p className="mt-10 text-center text-sm text-gray-500">
-                    Don't have an account?{' '}
+                    Don&apos;t have an account?{' '}
                     <Link href="/register" className="font-semibold leading-6 text-black hover:underline underline-offset-4">
                         Register here
                     </Link>

@@ -29,14 +29,23 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     // Load from localStorage
     useEffect(() => {
-        const savedCart = localStorage.getItem("cart_items");
-        if (savedCart) {
-            try {
-                setCartItems(JSON.parse(savedCart));
-            } catch (e) {
-                console.error("Failed to parse cart items", e);
+        const loadSavedCart = () => {
+            const savedCart = localStorage.getItem("cart_items");
+            if (savedCart) {
+                try {
+                    const parsed = JSON.parse(savedCart);
+                    setCartItems(parsed);
+                } catch (e) {
+                    console.error("Failed to parse cart items", e);
+                }
             }
-        }
+        };
+
+        // Use setTimeout to move the state update to the next tick, 
+        // avoiding the synchronous update warning in some environments.
+        // Alternatively, we could initialize the state from localStorage if not for SSR.
+        const timer = setTimeout(loadSavedCart, 0);
+        return () => clearTimeout(timer);
     }, []);
 
     // Save to localStorage
