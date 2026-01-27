@@ -54,7 +54,7 @@ model Product {
   category    Category    @relation(fields: [categoryId], references: [id])
   
   userId      String?
-  user        User?       @relation(fields: [userId], references: [id])
+  user        User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
   
   orderItems  OrderItem[]
   cartItems   CartItem[]
@@ -75,7 +75,7 @@ model Category {
 model Order {
   id        String      @id @default(uuid())
   userId    String
-  user      User        @relation(fields: [userId], references: [id])
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   total     Decimal     @db.Decimal(10, 2)
   status    OrderStatus @default(PENDING)
   createdAt DateTime    @default(now())
@@ -89,7 +89,7 @@ model Order {
 model OrderItem {
   id        String  @id @default(uuid())
   orderId   String
-  order     Order   @relation(fields: [orderId], references: [id])
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productId String
   product   Product @relation(fields: [productId], references: [id])
   quantity  Int
@@ -99,7 +99,7 @@ model OrderItem {
 model Cart {
   id        String     @id @default(uuid())
   userId    String?    @unique // Optional to allow guest carts initially if needed, but usually linked to user
-  user      User?      @relation(fields: [userId], references: [id])
+  user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
@@ -109,7 +109,7 @@ model Cart {
 model CartItem {
   id        String  @id @default(uuid())
   cartId    String
-  cart      Cart    @relation(fields: [cartId], references: [id])
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
   productId String
   product   Product @relation(fields: [productId], references: [id])
   quantity  Int
@@ -118,7 +118,7 @@ model CartItem {
 model Address {
   id        String   @id @default(uuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   street    String
   city      String
   state     String
