@@ -1,6 +1,8 @@
 # 👒 MODERN_ESTHETE - Backend Systems
 
-![Header Image](https://raw.githubusercontent.com/Devsebastian44/Modern-Esthete/main/public/readme-header.png)
+<p align="center">
+  <img src="Logo.png">
+</p>
 
 ---
 
@@ -33,21 +35,21 @@ graph TD
     classDef database fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px;
 
     subgraph Client ["🌐 Client Interface (Frontend)"]
-        UI["💻 React Components"]
-        State["📦 Cart State (Context)"]
-        Logic["🛡️ Client Validation"]
+        UI["React Components"]
+        State["Cart State (Context)"]
+        Logic["Client Validation"]
     end
 
     subgraph Server ["⚡ Infrastructure (Backend)"]
-        Routes["🚀 App Router / SSR"]
-        API["📡 API Endpoints"]
-        Auth["🔐 Auth.js Middleware"]
-        Prisma["💎 Prisma ORM Engine"]
+        Routes["App Router / SSR"]
+        API["API Endpoints"]
+        Auth["Auth.js Middleware"]
+        Prisma["Prisma ORM Engine"]
     end
 
     subgraph Data ["💾 Persistence Layer"]
-        Postgres[(🗄️ PostgreSQL Database)]
-        Supabase["🔥 Supabase Logic / RLS"]
+        Postgres[(PostgreSQL Database)]
+        Supabase["Supabase Logic / RLS"]
     end
 
     %% Connections
