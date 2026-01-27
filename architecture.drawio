@@ -55,7 +55,16 @@
           <mxGeometry x="20" y="250" width="180" height="60" as="geometry" />
         </mxCell>
         
+        <!-- Supabase Auth Admin -->
+        <mxCell id="sbauth" value="Supabase Auth&#xa;(Admin Client)" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="560" y="80" width="150" height="80" as="geometry" />
+        </mxCell>
+        
         <!-- Connections -->
+        <mxCell id="edge_api_sbauth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=1;strokeColor=#990099;dashed=1;" edge="1" parent="1" source="api" target="sbauth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
         <mxCell id="edge1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="user" target="pages">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
