@@ -17,6 +17,19 @@ BEGIN
     DROP POLICY IF EXISTS "Users can manage their own orders" ON "Order";
     -- Drop policies for OrderItem
     DROP POLICY IF EXISTS "Users can manage their own order items" ON "OrderItem";
+    -- Drop policies for bookmarks
+    DROP POLICY IF EXISTS "Allow public delete" ON "bookmarks";
+    DROP POLICY IF EXISTS "Allow public insert" ON "bookmarks";
+    DROP POLICY IF EXISTS "Users can manage their own bookmarks" ON "bookmarks";
+    -- Drop policies for comments
+    DROP POLICY IF EXISTS "Allow public insert" ON "comments";
+    DROP POLICY IF EXISTS "Users can manage their own comments" ON "comments";
+    DROP POLICY IF EXISTS "Public read for comments" ON "comments";
+    -- Drop policies for likes
+    DROP POLICY IF EXISTS "Allow public delete" ON "likes";
+    DROP POLICY IF EXISTS "Allow public insert" ON "likes";
+    DROP POLICY IF EXISTS "Users can manage their own likes" ON "likes";
+    DROP POLICY IF EXISTS "Public read for likes" ON "likes";
 END $$;
 
 -- Enable RLS for all tables (Safe to run multiple times)
@@ -28,6 +41,9 @@ ALTER TABLE "OrderItem" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "Cart" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "CartItem" ENABLE ROW LEVEL SECURITY;
 ALTER TABLE "Address" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "bookmarks" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "comments" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "likes" ENABLE ROW LEVEL SECURITY;
 
 -- 1. Product and Category (Public Read-Only)
 CREATE POLICY "Public Read Access for Products" ON "Product"
@@ -71,6 +87,22 @@ CREATE POLICY "Users can manage their own order items" ON "OrderItem"
       AND "Order"."userId" = auth.uid()::text
     )
   );
+
+-- 8. Bookmarks (Owner access)
+CREATE POLICY "Users can manage their own bookmarks" ON "bookmarks"
+  FOR ALL USING (auth.uid() = user_id);
+
+-- 9. Comments (Public read, Owner management)
+CREATE POLICY "Public read for comments" ON "comments"
+  FOR SELECT USING (true);
+CREATE POLICY "Users can manage their own comments" ON "comments"
+  FOR ALL USING (auth.uid() = user_id);
+
+-- 10. Likes (Public read, Owner management)
+CREATE POLICY "Public read for likes" ON "likes"
+  FOR SELECT USING (true);
+CREATE POLICY "Users can manage their own likes" ON "likes"
+  FOR ALL USING (auth.uid() = user_id);
 
 -- Grant all to authenticated users if needed for PostgREST
 -- Note: Prisma bypasses this, but Supabase Auth users might need it
