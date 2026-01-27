@@ -88,6 +88,12 @@ graph TD
 | `AUTH_SECRET` | Auth.js | Key for sesión encryption |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase Admin | Access for user deletion |
 
+## 🤝 Contributing
+
+Developed with ❤️ for the Tech Community.
+
 ---
 
-&copy; 2024 MODERN_ESTHETE - Technical Backend Overview.
+## 📜 Licencia
+
+Este proyecto está bajo la licencia MIT. Puedes usarlo libremente, siempre citando al autor.

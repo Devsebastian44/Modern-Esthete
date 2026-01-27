@@ -1,67 +1,61 @@
-<mxfile host="65bd71144e">
-    <diagram id="backend-arch" name="Backend Architecture">
-        <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-            <root>
-                <mxCell id="0"/>
-                <mxCell id="1" parent="0"/>
-                
-                <!-- Client Layer -->
-                <mxCell id="client-layer" value="Client Layer" style="swimlane;whiteSpace=wrap;html=1;fontStyle=1;startSize=23;" vertex="1" parent="1">
-                    <mxGeometry x="120" y="40" width="560" height="120" as="geometry"/>
-                </mxCell>
-                <mxCell id="ui" value="Frontend Interface&lt;br&gt;(React / Next.js Client)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="client-layer">
-                    <mxGeometry x="180" y="40" width="200" height="60" as="geometry"/>
-                </mxCell>
+<mxfile host="app.diagrams.net">
+  <diagram id="modern-esthete-arch" name="Modern Esthete Architecture">
+    <mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Client Layer -->
+        <mxCell id="client_layer" value="🌐 Client Interface" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="220" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="ui" value="💻 React / Next.js UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#01579b;" vertex="1" parent="client_layer">
+          <mxGeometry x="30" y="50" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="state" value="📦 Global State / Cart" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#01579b;" vertex="1" parent="client_layer">
+          <mxGeometry x="30" y="110" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="logic" value="🛡️ Client-side Auth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#01579b;" vertex="1" parent="client_layer">
+          <mxGeometry x="30" y="170" width="160" height="40" as="geometry" />
+        </mxCell>
 
-                <!-- Backend Layer -->
-                <mxCell id="server-layer" value="Backend Layer (Next.js Serverless)" style="swimlane;whiteSpace=wrap;html=1;fontStyle=1;startSize=23;" vertex="1" parent="1">
-                    <mxGeometry x="120" y="240" width="560" height="240" as="geometry"/>
-                </mxCell>
-                <mxCell id="api" value="API Route Handlers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="server-layer">
-                    <mxGeometry x="40" y="80" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="auth" value="Security Layer&lt;br&gt;(Auth.js / v5)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="server-layer">
-                    <mxGeometry x="210" y="40" width="140" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="prisma" value="ORM Engine&lt;br&gt;(Prisma Client)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="server-layer">
-                    <mxGeometry x="380" y="140" width="140" height="60" as="geometry"/>
-                </mxCell>
+        <!-- Backend Core -->
+        <mxCell id="server_layer" value="⚡ Backend Core (Next.js)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;" vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="220" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="📡 Server Actions / API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e65100;" vertex="1" parent="server_layer">
+          <mxGeometry x="30" y="50" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" value="🔐 Auth.js Middleware" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;" vertex="1" parent="server_layer">
+          <mxGeometry x="30" y="110" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="prisma" value="💎 Prisma ORM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e65100;" vertex="1" parent="server_layer">
+          <mxGeometry x="30" y="170" width="160" height="40" as="geometry" />
+        </mxCell>
 
-                <!-- Data Layer -->
-                <mxCell id="data-layer" value="Persistence Layer" style="swimlane;whiteSpace=wrap;html=1;fontStyle=1;startSize=23;" vertex="1" parent="1">
-                    <mxGeometry x="120" y="560" width="560" height="160" as="geometry"/>
-                </mxCell>
-                <mxCell id="postgres" value="PostgreSQL&lt;br&gt;(Managed Database)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="data-layer">
-                    <mxGeometry x="120" y="40" width="120" height="100" as="geometry"/>
-                </mxCell>
-                <mxCell id="supabase" value="Supabase Logic&lt;br&gt;(RLS / Security)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="data-layer">
-                    <mxGeometry x="320" y="60" width="120" height="60" as="geometry"/>
-                </mxCell>
+        <!-- Persistence Layer -->
+        <mxCell id="db_layer" value="💾 Persistence Layer" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#1b5e20;" vertex="1" parent="1">
+          <mxGeometry x="180" y="340" width="220" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="postgres" value="🗄️ PostgreSQL Database" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffffff;strokeColor=#1b5e20;" vertex="1" parent="db_layer">
+          <mxGeometry x="50" y="45" width="120" height="80" as="geometry" />
+        </mxCell>
 
-                <!-- Connections -->
-                <mxCell id="ui_to_api" value="Secure API Requests" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ui" target="api">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="api_to_auth" value="Verify" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="server-layer" source="api" target="auth">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="api_to_prisma" value="Queries" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="server-layer" source="api" target="prisma">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="110" y="170"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="auth_to_prisma" value="Sync Session" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="server-layer" source="auth" target="prisma">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="prisma_to_db" value="Data Operations" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="prisma" target="postgres">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="supabase_to_db" value="Apply RLS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="data-layer" source="supabase" target="postgres">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-            </root>
-        </mxGraphModel>
-    </diagram>
+        <!-- Connections -->
+        <mxCell id="edge1" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ui" target="api">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="api" target="auth">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="auth" target="prisma">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="prisma" target="postgres">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>
