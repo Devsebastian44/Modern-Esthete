@@ -6,16 +6,16 @@
 
 ## 🛠️ Tech Stack
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
 ![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
 
-- **Framework**: `Next.js 15` (App Router, Server Actions, Middleware).
-- **Styling**: `Tailwind CSS 4.0` with modern design patterns.
-- **ORM & DB**: `Prisma` + `Supabase` (PostgreSQL) with RLS security.
-- **Auth**: `Auth.js v5` (NextAuth) for secure session handling.
+- **Framework**: `Next.js 16` (App Router, Server Actions, Middleware).
+- **Styling**: `Tailwind CSS 4.x` with modern design patterns.
+- **ORM & DB**: `Prisma v6` + `Supabase` (PostgreSQL) with RLS security.
+- **Auth**: `Auth.js v5` (NextAuth Beta) for secure session handling.
 - **Validation**: `Zod` for schema-based data integrity.
 
 ---
